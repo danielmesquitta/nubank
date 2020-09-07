@@ -1,4 +1,5 @@
 import React from 'react';
+import { Animated, ScrollViewProps } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import QRCode from 'react-native-qrcode-generator';
 
@@ -12,12 +13,14 @@ import {
   ButtonText,
 } from './styles';
 
+interface IHomeProps extends Animated.AnimatedProps<ScrollViewProps> {}
+
 interface INavItemProps {
   icon: string;
   text: string;
 }
 
-const Menu: React.FC = () => {
+const Menu: React.FC<IHomeProps> = ({ ...rest }) => {
   const NavItem: React.FC<INavItemProps> = ({ icon, text }) => {
     return (
       <ItemContainer>
@@ -28,7 +31,7 @@ const Menu: React.FC = () => {
   };
 
   return (
-    <Container>
+    <Container {...rest}>
       <Code>
         <QRCode
           value="https://github.com/danielmesquitta"
